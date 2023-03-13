@@ -1,0 +1,4165 @@
+{
+  "name": "Masters of the Universe",
+  "revision": "0.1",
+  "game": "MotU Battleground",
+  "genre": "fantasy",
+  "publisher": "Archon Studios",
+  "url": "http://motubattleground.com/",
+  "notes": "",
+  "wip": true,
+  "manifest": {
+    "assetTaxonomy": {
+      "Character": {
+        "allowed": {
+          "classifications": [
+            "Weapon",
+            "Item"
+          ]
+        },
+        "stats": {
+          "Cost": {
+            "statType": "numeric",
+            "value": 0,
+            "group": "Cost",
+            "groupOrder": -1,
+            "visibility": "normal",
+            "tracked": true
+          },
+          "Mind": {
+            "statType": "numeric",
+            "format": "{v} <span style=\"color:#86a\">{i}</span>",
+            "value": 0,
+            "icons": [
+              "hood"
+            ],
+            "statOrder": 3,
+            "group": "Stats",
+            "groupOrder": 1,
+            "visibility": "normal",
+            "tracked": true
+          },
+          "Power": {
+            "statType": "numeric",
+            "format": "{v} <span style=\"color:#eb3\">{i}</span>",
+            "value": 0,
+            "icons": [
+              "spiky-explosion"
+            ],
+            "statOrder": 4,
+            "group": "Stats",
+            "groupOrder": 1,
+            "visibility": "normal",
+            "tracked": true
+          },
+          "Toughness": {
+            "statType": "numeric",
+            "format": "{v} <span style=\"color:#b87\">{i}</span>",
+            "value": 0,
+            "icons": [
+              "heavy-helm"
+            ],
+            "statOrder": 2,
+            "group": "Stats",
+            "groupOrder": 1,
+            "visibility": "normal",
+            "tracked": true
+          },
+          "Perception": {
+            "statType": "numeric",
+            "format": "{v} <span style=\"color:#69d\">{i}</span>",
+            "value": 0,
+            "icons": [
+              "crystal-eye"
+            ],
+            "statOrder": 5,
+            "group": "Stats",
+            "groupOrder": 1,
+            "visibility": "normal",
+            "tracked": true
+          },
+          "Strength": {
+            "statType": "numeric",
+            "format": "{v} <span style=\"color:#e73\">{i}</span>",
+            "value": 0,
+            "icons": [
+              "strong"
+            ],
+            "statOrder": 6,
+            "group": "Stats",
+            "groupOrder": 1,
+            "visibility": "normal",
+            "tracked": true
+          },
+          "Health": {
+            "statType": "numeric",
+            "format": "{v} <span style=\"color:#c24\">{i}</span>",
+            "value": 0,
+            "icons": [
+              "broken-heart"
+            ],
+            "statOrder": 1,
+            "group": "Stats",
+            "groupOrder": 1,
+            "visibility": "normal",
+            "tracked": true
+          },
+          "Speed": {
+            "statType": "term",
+            "format": "{v} <span style=\"color:#393\">{i}</span>",
+            "value": "/",
+            "icons": [
+              "wingfoot"
+            ],
+            "statOrder": 7,
+            "group": "Stats",
+            "groupOrder": 1,
+            "visibility": "normal"
+          },
+          "focusedSpeed": {
+            "statType": "numeric",
+            "value": 0,
+            "visibility": "hidden",
+            "tracked": true
+          },
+          "normalSpeed": {
+            "statType": "numeric",
+            "value": 0,
+            "visibility": "hidden",
+            "tracked": true
+          },
+          "Armour": {
+            "statType": "numeric",
+            "value": 0,
+            "icons": [
+              "abdominal-armor"
+            ],
+            "visibility": "hidden",
+            "tracked": true,
+            "max": 0
+          },
+          "Melee": {
+            "statType": "numeric",
+            "value": 0,
+            "icons": [
+              "mailed-fist"
+            ],
+            "visibility": "hidden",
+            "tracked": true,
+            "max": 0
+          },
+          "Ranged": {
+            "statType": "numeric",
+            "value": 0,
+            "icons": [
+              "pocket-bow"
+            ],
+            "visibility": "hidden",
+            "tracked": true,
+            "max": 0
+          },
+          "Shield": {
+            "statType": "numeric",
+            "value": 0,
+            "icons": [
+              "shield"
+            ],
+            "visibility": "hidden",
+            "tracked": true,
+            "max": 0
+          },
+          "Spell": {
+            "statType": "numeric",
+            "value": 0,
+            "icons": [
+              "fairy-wand"
+            ],
+            "visibility": "hidden",
+            "tracked": true,
+            "max": 0
+          },
+          "Trinket": {
+            "statType": "numeric",
+            "value": 0,
+            "icons": [
+              "cut-diamond"
+            ],
+            "visibility": "hidden",
+            "tracked": true,
+            "max": 0
+          }
+        },
+        "keywords": {
+          "Faction": [],
+          "Release": [],
+          "Tags": []
+        },
+        "rules": {
+          "composeSpeed": {
+            "failState": "pass",
+            "evaluate": "AND",
+            "actions": [
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "stats",
+                    "Speed",
+                    "value"
+                  ]
+                ],
+                "actionType": "set",
+                "value": [
+                  "{self}",
+                  "stats",
+                  "normalSpeed",
+                  "value"
+                ],
+                "iterations": 1
+              },
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "stats",
+                    "Speed",
+                    "value"
+                  ]
+                ],
+                "actionType": "modify",
+                "value": "/",
+                "iterations": 1
+              },
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "stats",
+                    "Speed",
+                    "value"
+                  ]
+                ],
+                "actionType": "modify",
+                "value": [
+                  "{self}",
+                  "stats",
+                  "focusedSpeed",
+                  "value"
+                ],
+                "iterations": 1
+              }
+            ]
+          },
+          "allowMelee": {
+            "evals": [
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "stats",
+                    "Melee",
+                    "max"
+                  ]
+                ],
+                "min": 1,
+                "operator": "AND",
+                "not": false,
+                "actionable": true
+              }
+            ],
+            "failState": "pass",
+            "evaluate": "AND",
+            "actions": [
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "constraints",
+                    "any"
+                  ]
+                ],
+                "actionType": "add",
+                "value": "Melee",
+                "iterations": 1
+              }
+            ]
+          },
+          "allowRanged": {
+            "evals": [
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "stats",
+                    "Ranged",
+                    "max"
+                  ]
+                ],
+                "min": 1,
+                "operator": "AND",
+                "not": false,
+                "actionable": true
+              }
+            ],
+            "failState": "pass",
+            "evaluate": "AND",
+            "actions": [
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "constraints",
+                    "any"
+                  ]
+                ],
+                "actionType": "add",
+                "value": "Ranged",
+                "iterations": 1
+              }
+            ]
+          },
+          "allowSpell": {
+            "evals": [
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "stats",
+                    "Spell",
+                    "max"
+                  ]
+                ],
+                "min": 1,
+                "operator": "AND",
+                "not": false,
+                "actionable": true
+              }
+            ],
+            "failState": "pass",
+            "evaluate": "AND",
+            "actions": [
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "constraints",
+                    "any"
+                  ]
+                ],
+                "actionType": "add",
+                "value": "Spell",
+                "iterations": 1
+              }
+            ]
+          },
+          "allowArmour": {
+            "evals": [
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "stats",
+                    "Armour",
+                    "max"
+                  ]
+                ],
+                "min": 1,
+                "operator": "AND",
+                "not": false,
+                "actionable": true
+              }
+            ],
+            "failState": "pass",
+            "evaluate": "AND",
+            "actions": [
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "constraints",
+                    "any"
+                  ]
+                ],
+                "actionType": "add",
+                "value": "Armour",
+                "iterations": 1
+              }
+            ]
+          },
+          "allowShield": {
+            "evals": [
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "stats",
+                    "Shield",
+                    "max"
+                  ]
+                ],
+                "min": 1,
+                "operator": "AND",
+                "not": false,
+                "actionable": true
+              }
+            ],
+            "failState": "pass",
+            "evaluate": "AND",
+            "actions": [
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "constraints",
+                    "any"
+                  ]
+                ],
+                "actionType": "add",
+                "value": "Shield",
+                "iterations": 1
+              }
+            ]
+          },
+          "allowTrinket": {
+            "evals": [
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "stats",
+                    "Trinket",
+                    "max"
+                  ]
+                ],
+                "min": 1,
+                "operator": "AND",
+                "not": false,
+                "actionable": true
+              }
+            ],
+            "failState": "pass",
+            "evaluate": "AND",
+            "actions": [
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "constraints",
+                    "any"
+                  ]
+                ],
+                "actionType": "add",
+                "value": "Trinket",
+                "iterations": 1
+              }
+            ]
+          }
+        },
+        "aspects": {
+          "Lock Qty": true,
+          "Unique": true
+        }
+      },
+      "Equipment": {
+        "stats": {
+          "Cost": {
+            "statType": "numeric",
+            "value": 0,
+            "group": "Cost",
+            "groupOrder": -1,
+            "visibility": "always",
+            "tracked": true
+          },
+          "Range": {
+            "statType": "numeric",
+            "format": "{v} {i}",
+            "value": null,
+            "icons": [
+              "impact-point"
+            ],
+            "visibility": "normal"
+          },
+          "Modifier": {
+            "statType": "numeric",
+            "format": "{v} {i}",
+            "value": null,
+            "icons": [
+              "perspective-dice-six-faces-five"
+            ],
+            "statOrder": 1,
+            "visibility": "normal"
+          }
+        },
+        "keywords": {
+          "Type": [],
+          "Release": []
+        },
+        "aspects": {
+          "Lock Qty": true,
+          "Unique": true
+        },
+        "rules": {
+          "There are multiples of this unique equipment.": {
+            "evals": [
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "designation"
+                  ]
+                ],
+                "operator": "AND",
+                "not": false,
+                "actionable": false
+              },
+              {
+                "paths": [
+                  [
+                    "{roster}",
+                    "tally",
+                    "{0string}"
+                  ]
+                ],
+                "max": 1,
+                "operator": "AND",
+                "not": true,
+                "actionable": false
+              },
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "aspects",
+                    "Unique"
+                  ],
+                  [
+                    "{self}",
+                    "rules",
+                    "There are multiples of this unique equipment.",
+                    "evals",
+                    "1",
+                    "result",
+                    "truthy"
+                  ]
+                ],
+                "max": 1,
+                "operator": "SUM",
+                "not": false,
+                "actionable": true
+              }
+            ],
+            "failState": "error",
+            "evaluate": "AND"
+          }
+        },
+        "text": ""
+      },
+      "Fate": {
+        "stats": {
+          "AP": {
+            "statType": "numeric",
+            "format": "<span style=\"color:#e94\">{i}</span> {v}",
+            "value": 0,
+            "icons": [
+              "growth"
+            ],
+            "visibility": "normal"
+          },
+          "Mana": {
+            "statType": "numeric",
+            "format": "<span style=\"color:#78c\">{i}</span> {v}",
+            "value": 0,
+            "icons": [
+              "potion-ball"
+            ],
+            "visibility": "normal"
+          }
+        },
+        "keywords": {
+          "Release": []
+        },
+        "aspects": {
+          "Lock Qty": true,
+          "Unique": true
+        }
+      },
+      "Glory": {
+        "stats": {
+          "AP": {
+            "statType": "numeric",
+            "format": "<span style=\"color:#e94\">{i}</span> {v}",
+            "value": 0,
+            "icons": [
+              "growth"
+            ],
+            "visibility": "normal"
+          },
+          "Mana": {
+            "statType": "numeric",
+            "format": "<span style=\"color:#78c\">{i}</span> {v}",
+            "value": 0,
+            "icons": [
+              "potion-ball"
+            ],
+            "visibility": "normal"
+          }
+        },
+        "keywords": {
+          "Release": []
+        },
+        "aspects": {
+          "Lock Qty": true,
+          "Unique": true
+        }
+      },
+      "Iconic": {
+        "templateClass": "Equipment"
+      },
+      "Item": {
+        "templateClass": "Equipment"
+      },
+      "Skill": {
+        "stats": {
+          "Mana": {
+            "statType": "numeric",
+            "format": "<span style=\"color:#78c\">{i}</span> {v}",
+            "value": null,
+            "icons": [
+              "potion-ball"
+            ],
+            "visibility": "normal"
+          },
+          "AP": {
+            "statType": "numeric",
+            "format": "<span style=\"color:#e94\">{i}</span> {v}",
+            "value": null,
+            "icons": [
+              "growth"
+            ],
+            "visibility": "normal"
+          }
+        }
+      },
+      "Weapon": {
+        "templateClass": "Equipment"
+      }
+    },
+    "assetCatalog": {
+      "Character§Beast Man": {
+        "stats": {
+          "Health": {
+            "value": 6
+          },
+          "Toughness": {
+            "value": 2
+          },
+          "Mind": {
+            "value": 2
+          },
+          "Power": {
+            "value": 2
+          },
+          "Perception": {
+            "value": 3
+          },
+          "Strength": {
+            "value": 5
+          },
+          "normalSpeed": {
+            "value": 5
+          },
+          "focusedSpeed": {
+            "value": 8
+          },
+          "Melee": {
+            "max": 1
+          },
+          "Shield": {
+            "max": 1
+          },
+          "Ranged": {
+            "max": 1
+          },
+          "Trinket": {
+            "max": 2
+          },
+          "Cost": {
+            "value": 19
+          }
+        },
+        "assets": {
+          "traits": [
+            "Skill§Primal Rage",
+            "Skill§Supernatural Endurance"
+          ]
+        },
+        "keywords": {
+          "Tags": [],
+          "Release": [
+            "Wave 1"
+          ],
+          "Faction": [
+            "Evil Warriors"
+          ]
+        },
+        "allowed": {
+          "items": [
+            "Iconic§Beast Man’s Whip"
+          ]
+        }
+      },
+      "Character§Buzz-Off": {
+        "stats": {
+          "Cost": {
+            "value": 16
+          },
+          "Health": {
+            "value": 4
+          },
+          "Toughness": {
+            "value": 3
+          },
+          "Mind": {
+            "value": 2
+          },
+          "Power": {
+            "value": 2
+          },
+          "Perception": {
+            "value": 3
+          },
+          "Strength": {
+            "value": 4
+          },
+          "normalSpeed": {
+            "value": 6
+          },
+          "focusedSpeed": {
+            "value": 9
+          },
+          "Melee": {
+            "max": 2
+          },
+          "Trinket": {
+            "max": 3
+          }
+        },
+        "assets": {
+          "traits": [
+            "Skill§Eye of the Bee",
+            "Skill§Hero in the Sky"
+          ]
+        },
+        "keywords": {
+          "Release": [
+            "Wave 3"
+          ],
+          "Faction": [
+            "Masters of the Universe"
+          ]
+        },
+        "allowed": {
+          "items": [
+            "Iconic§Short Axe"
+          ]
+        }
+      },
+      "Character§Catra": {
+        "keywords": {
+          "Faction": [
+            "The Evil Horde"
+          ],
+          "Release": [
+            "Wave 4"
+          ]
+        }
+      },
+      "Character§Evil-Lyn": {
+        "keywords": {
+          "Faction": [
+            "Evil Warriors"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        },
+        "stats": {
+          "Health": {
+            "value": 4
+          },
+          "Toughness": {
+            "value": 1
+          },
+          "Mind": {
+            "value": 4
+          },
+          "Power": {
+            "value": 5
+          },
+          "Perception": {
+            "value": 3
+          },
+          "Strength": {
+            "value": 2
+          },
+          "normalSpeed": {
+            "value": 5
+          },
+          "focusedSpeed": {
+            "value": 8
+          },
+          "Spell": {
+            "max": 2
+          },
+          "Armour": {
+            "max": 1
+          },
+          "Trinket": {
+            "max": 2
+          },
+          "Cost": {
+            "value": 16
+          }
+        },
+        "assets": {
+          "traits": [
+            "Skill§Shared Power",
+            "Skill§Dark Presence"
+          ]
+        },
+        "allowed": {
+          "items": [
+            "Iconic§Shadow Strike"
+          ]
+        }
+      },
+      "Character§Grizzlor": {
+        "keywords": {
+          "Faction": [
+            "The Evil Horde"
+          ],
+          "Release": [
+            "Wave 4"
+          ]
+        }
+      },
+      "Character§He-Man": {
+        "keywords": {
+          "Faction": [
+            "Masters of the Universe"
+          ],
+          "Tags": [
+            "He-man"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        },
+        "stats": {
+          "Health": {
+            "value": 5
+          },
+          "Toughness": {
+            "value": 3
+          },
+          "Mind": {
+            "value": 3
+          },
+          "Power": {
+            "value": 3
+          },
+          "Perception": {
+            "value": 3
+          },
+          "Strength": {
+            "value": 5
+          },
+          "normalSpeed": {
+            "value": 5
+          },
+          "focusedSpeed": {
+            "value": 8
+          },
+          "Armour": {
+            "max": 1
+          },
+          "Melee": {
+            "max": 1
+          },
+          "Shield": {
+            "max": 1
+          },
+          "Ranged": {
+            "max": 1
+          },
+          "Trinket": {
+            "max": 2
+          },
+          "Cost": {
+            "value": 19
+          }
+        },
+        "assets": {
+          "traits": [
+            "Skill§I Have the Power!",
+            "Skill§Superhuman Reflex"
+          ]
+        },
+        "allowed": {
+          "items": [
+            "Iconic§Sword of Power"
+          ]
+        }
+      },
+      "Character§He-Man with Battle Cat": {
+        "keywords": {
+          "Faction": [
+            "Masters of the Universe"
+          ],
+          "Release": [
+            "Promo"
+          ],
+          "Tags": [
+            "He-Man"
+          ]
+        }
+      },
+      "Character§Hordak": {
+        "keywords": {
+          "Faction": [
+            "The Evil Horde"
+          ],
+          "Release": [
+            "Wave 4"
+          ]
+        }
+      },
+      "Character§Hordak on Mantisaur": {
+        "keywords": {
+          "Release": [
+            "Promo"
+          ],
+          "Faction": [
+            "The Evil Horde"
+          ]
+        }
+      },
+      "Character§Horde Trooper": {
+        "keywords": {
+          "Faction": [
+            "The Evil Horde"
+          ],
+          "Release": [
+            "Wave 4"
+          ]
+        },
+        "aspects": {
+          "Lock Qty": false
+        },
+        "rules": {
+          "Maximum 2 of this character.": {
+            "evals": [
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "quantity"
+                  ]
+                ],
+                "max": 2,
+                "operator": "AND",
+                "not": false,
+                "actionable": true
+              }
+            ],
+            "failState": "error",
+            "evaluate": "AND"
+          }
+        }
+      },
+      "Character§Horde Wraith": {
+        "keywords": {
+          "Faction": [
+            "The Evil Horde"
+          ],
+          "Release": [
+            "Wave 4"
+          ]
+        },
+        "aspects": {
+          "Lock Qty": false
+        },
+        "rules": {
+          "Maximum 2 of this character.": {
+            "evals": [
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "quantity"
+                  ]
+                ],
+                "max": 2,
+                "operator": "AND",
+                "not": false,
+                "actionable": true
+              }
+            ],
+            "failState": "error",
+            "evaluate": "AND"
+          }
+        }
+      },
+      "Character§Man-at-Arms": {
+        "keywords": {
+          "Faction": [
+            "Masters of the Universe"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        },
+        "stats": {
+          "Health": {
+            "value": 5
+          },
+          "Toughness": {
+            "value": 4
+          },
+          "Mind": {
+            "value": 2
+          },
+          "Power": {
+            "value": 2
+          },
+          "Perception": {
+            "value": 4
+          },
+          "Strength": {
+            "value": 4
+          },
+          "normalSpeed": {
+            "value": 5
+          },
+          "focusedSpeed": {
+            "value": 8
+          },
+          "Armour": {
+            "max": 1
+          },
+          "Ranged": {
+            "max": 1
+          },
+          "Trinket": {
+            "max": 2
+          },
+          "Shield": {
+            "max": 1
+          },
+          "Melee": {
+            "max": 1
+          },
+          "Cost": {
+            "value": 18
+          }
+        },
+        "assets": {
+          "traits": [
+            "Skill§Always Vigilant",
+            "Skill§Master Tactician"
+          ]
+        },
+        "allowed": {
+          "items": [
+            "Iconic§Arm Cannon"
+          ]
+        }
+      },
+      "Character§Man-E-Faces": {
+        "stats": {
+          "Cost": {
+            "value": 18
+          },
+          "Health": {
+            "value": 5
+          },
+          "Toughness": {
+            "value": 3
+          },
+          "Mind": {
+            "value": 3
+          },
+          "Power": {
+            "value": 3
+          },
+          "Perception": {
+            "value": 3
+          },
+          "Strength": {
+            "value": 3
+          },
+          "normalSpeed": {
+            "value": 5
+          },
+          "focusedSpeed": {
+            "value": 8
+          },
+          "Melee": {
+            "max": 1
+          },
+          "Ranged": {
+            "max": 1
+          },
+          "Armour": {
+            "max": 1
+          },
+          "Trinket": {
+            "max": 2
+          },
+          "Face": {
+            "statType": "rank",
+            "value": "Human",
+            "ranks": {
+              "Human": {
+                "order": 0,
+                "tracking": {}
+              },
+              "Robot": {
+                "order": 1,
+                "tracking": {
+                  "Perception": 2,
+                  "Toughness": -1
+                }
+              },
+              "Monster": {
+                "order": 2,
+                "tracking": {
+                  "Strength": 2,
+                  "Mind": -1
+                }
+              }
+            },
+            "statOrder": 1,
+            "visibility": "normal",
+            "dynamic": true
+          }
+        },
+        "assets": {
+          "traits": [
+            "Skill§Face of the Robot",
+            "Skill§Face of the Monster"
+          ]
+        },
+        "keywords": {
+          "Release": [
+            "Wave 3"
+          ],
+          "Faction": [
+            "Masters of the Universe"
+          ]
+        },
+        "allowed": {
+          "items": [
+            "Iconic§Laser Gun (Human)"
+          ]
+        },
+        "rules": {
+          "robotGun": {
+            "evals": [
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "stats",
+                    "Face",
+                    "value"
+                  ]
+                ],
+                "value": "Robot",
+                "operator": "AND",
+                "not": false,
+                "actionable": true
+              },
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "tally",
+                    "Laser Gun (Human)"
+                  ]
+                ],
+                "min": 1,
+                "operator": "AND",
+                "not": false,
+                "actionable": true
+              }
+            ],
+            "failState": "pass",
+            "evaluate": "AND",
+            "actions": [
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "traits"
+                  ]
+                ],
+                "actionType": "add",
+                "value": "Iconic§Laser Gun (Robot)",
+                "iterations": 1
+              }
+            ]
+          },
+          "monsterGun": {
+            "evals": [
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "stats",
+                    "Face",
+                    "value"
+                  ]
+                ],
+                "value": "Monster",
+                "operator": "AND",
+                "not": false,
+                "actionable": true
+              },
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "tally",
+                    "Laser Gun (Human)"
+                  ]
+                ],
+                "min": 1,
+                "operator": "AND",
+                "not": false,
+                "actionable": true
+              }
+            ],
+            "failState": "pass",
+            "evaluate": "AND",
+            "actions": [
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "traits"
+                  ]
+                ],
+                "actionType": "add",
+                "value": "Iconic§Laser Gun (Monster)",
+                "iterations": 1
+              }
+            ]
+          }
+        }
+      },
+      "Character§Mer-Man": {
+        "stats": {
+          "Health": {
+            "value": 5
+          },
+          "Toughness": {
+            "value": 3
+          },
+          "Mind": {
+            "value": 2
+          },
+          "Power": {
+            "value": 3
+          },
+          "Perception": {
+            "value": 4
+          },
+          "Strength": {
+            "value": 4
+          },
+          "normalSpeed": {
+            "value": 5
+          },
+          "focusedSpeed": {
+            "value": 8
+          },
+          "Armour": {
+            "max": 1
+          },
+          "Melee": {
+            "max": 1
+          },
+          "Ranged": {
+            "max": 1
+          },
+          "Spell": {
+            "max": 1
+          },
+          "Trinket": {
+            "max": 2
+          },
+          "Cost": {
+            "value": 17
+          }
+        },
+        "keywords": {
+          "Faction": [
+            "Evil Warriors"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        },
+        "assets": {
+          "traits": [
+            "Skill§Instant Puddle",
+            "Skill§Freezing Ray"
+          ]
+        },
+        "allowed": {
+          "items": [
+            "Iconic§Trident"
+          ]
+        }
+      },
+      "Character§Orko": {
+        "stats": {
+          "Health": {
+            "value": 3
+          },
+          "Toughness": {
+            "value": 1
+          },
+          "Mind": {
+            "value": 3
+          },
+          "Power": {
+            "value": 6
+          },
+          "Perception": {
+            "value": 2
+          },
+          "Strength": {
+            "value": 2
+          },
+          "normalSpeed": {
+            "value": 5
+          },
+          "focusedSpeed": {
+            "value": 8
+          },
+          "Spell": {
+            "max": 2
+          },
+          "Trinket": {
+            "max": 3
+          },
+          "Cost": {
+            "value": 16
+          }
+        },
+        "keywords": {
+          "Faction": [
+            "Masters of the Universe"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        },
+        "assets": {
+          "traits": [
+            "Skill§Magic Hat",
+            "Skill§Traveller from Trolla"
+          ]
+        },
+        "allowed": {
+          "items": [
+            "Iconic§Cosmic Storm"
+          ]
+        }
+      },
+      "Character§Ram Man": {
+        "stats": {
+          "Health": {
+            "value": 6
+          },
+          "Toughness": {
+            "value": 4
+          },
+          "Mind": {
+            "value": 1
+          },
+          "Power": {
+            "value": 2
+          },
+          "Perception": {
+            "value": 2
+          },
+          "Strength": {
+            "value": 4
+          },
+          "normalSpeed": {
+            "value": 4
+          },
+          "focusedSpeed": {
+            "value": 6
+          },
+          "Armour": {
+            "max": 1
+          },
+          "Melee": {
+            "max": 1
+          },
+          "Shield": {
+            "max": 1
+          },
+          "Trinket": {
+            "max": 2
+          },
+          "Cost": {
+            "value": 18
+          }
+        },
+        "keywords": {
+          "Faction": [
+            "Masters of the Universe"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        },
+        "assets": {
+          "traits": [
+            "Skill§Ramming Speed",
+            "Skill§Human Battering Ram"
+          ]
+        },
+        "allowed": {
+          "items": [
+            "Iconic§Axe"
+          ]
+        }
+      },
+      "Character§Scareglow": {
+        "stats": {
+          "Cost": {
+            "value": 17
+          },
+          "Health": {
+            "value": 5
+          },
+          "Toughness": {
+            "value": 3
+          },
+          "Mind": {
+            "value": 3
+          },
+          "Power": {
+            "value": 4
+          },
+          "Perception": {
+            "value": 3
+          },
+          "Strength": {
+            "value": 4
+          },
+          "normalSpeed": {
+            "value": 4
+          },
+          "focusedSpeed": {
+            "value": 6
+          },
+          "Melee": {
+            "max": 1
+          },
+          "Spell": {
+            "max": 1
+          },
+          "Armour": {
+            "max": 1
+          },
+          "Trinket": {
+            "max": 2
+          }
+        },
+        "assets": {
+          "traits": [
+            "Skill§Nightmare",
+            "Skill§Fearsome Presence"
+          ]
+        },
+        "keywords": {
+          "Release": [
+            "Wave 1"
+          ],
+          "Faction": [
+            "Evil Warriors"
+          ]
+        },
+        "allowed": {
+          "items": [
+            "Iconic§Scythe of Doom"
+          ]
+        }
+      },
+      "Character§Shadow Weaver": {
+        "keywords": {
+          "Faction": [
+            "The Evil Horde"
+          ],
+          "Release": [
+            "Wave 4"
+          ]
+        }
+      },
+      "Character§Skeletor": {
+        "stats": {
+          "Health": {
+            "value": 5
+          },
+          "Toughness": {
+            "value": 3
+          },
+          "Mind": {
+            "value": 3
+          },
+          "Power": {
+            "value": 5
+          },
+          "Perception": {
+            "value": 2
+          },
+          "Strength": {
+            "value": 4
+          },
+          "normalSpeed": {
+            "value": 5
+          },
+          "focusedSpeed": {
+            "value": 8
+          },
+          "Melee": {
+            "max": 1
+          },
+          "Spell": {
+            "max": 1
+          },
+          "Trinket": {
+            "max": 2
+          },
+          "Armour": {
+            "max": 1
+          },
+          "Shield": {
+            "max": 1
+          },
+          "Cost": {
+            "value": 21
+          }
+        },
+        "keywords": {
+          "Faction": [
+            "Evil Warriors"
+          ],
+          "Tags": [
+            "Skeletor"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        },
+        "assets": {
+          "traits": [
+            "Skill§Summon",
+            "Skill§Lord of Destruction"
+          ]
+        },
+        "allowed": {
+          "items": [
+            "Iconic§Havoc Staff"
+          ]
+        }
+      },
+      "Character§Skeletor with Panthor": {
+        "keywords": {
+          "Release": [
+            "Promo"
+          ],
+          "Faction": [
+            "Evil Warriors"
+          ],
+          "Tags": [
+            "Skeletor"
+          ]
+        }
+      },
+      "Character§Sorceress": {
+        "stats": {
+          "Cost": {
+            "value": 16
+          },
+          "Health": {
+            "value": 4
+          },
+          "Toughness": {
+            "value": 1
+          },
+          "Mind": {
+            "value": 4
+          },
+          "Power": {
+            "value": 5
+          },
+          "Perception": {
+            "value": 2
+          },
+          "Strength": {
+            "value": 3
+          },
+          "normalSpeed": {
+            "value": 5
+          },
+          "focusedSpeed": {
+            "value": 10
+          },
+          "Melee": {
+            "max": 1
+          },
+          "Spell": {},
+          "Trinket": {
+            "max": 2
+          }
+        },
+        "assets": {
+          "traits": [
+            "Skill§Vision of the Future",
+            "Skill§Telepatic Guide"
+          ]
+        },
+        "keywords": {
+          "Release": [
+            "Wave 1"
+          ],
+          "Faction": [
+            "Masters of the Universe"
+          ]
+        },
+        "allowed": {
+          "items": [
+            "Iconic§Staff of Power"
+          ]
+        }
+      },
+      "Character§Stinkor": {
+        "stats": {
+          "Cost": {
+            "value": 17
+          },
+          "Health": {
+            "value": 5
+          },
+          "Toughness": {
+            "value": 3
+          },
+          "Mind": {
+            "value": 2
+          },
+          "Power": {
+            "value": 3
+          },
+          "Perception": {
+            "value": 4
+          },
+          "Strength": {
+            "value": 4
+          },
+          "normalSpeed": {
+            "value": 5
+          },
+          "focusedSpeed": {
+            "value": 8
+          },
+          "Melee": {
+            "max": 1
+          },
+          "Ranged": {
+            "max": 1
+          },
+          "Shield": {
+            "max": 1
+          },
+          "Armour": {
+            "max": 1
+          },
+          "Trinket": {
+            "max": 2
+          }
+        },
+        "assets": {
+          "traits": [
+            "Skill§Evil Master of Odors",
+            "Skill§Stinking Delight"
+          ]
+        },
+        "keywords": {
+          "Release": [
+            "Wave 3"
+          ],
+          "Faction": [
+            "Evil Warriors"
+          ]
+        },
+        "allowed": {
+          "items": [
+            "Iconic§Stink Gun"
+          ]
+        }
+      },
+      "Character§Stratos": {
+        "stats": {
+          "Health": {
+            "value": 4
+          },
+          "Toughness": {
+            "value": 2
+          },
+          "Mind": {
+            "value": 3
+          },
+          "Power": {
+            "value": 3
+          },
+          "Perception": {
+            "value": 5
+          },
+          "Strength": {
+            "value": 3
+          },
+          "normalSpeed": {
+            "value": 6
+          },
+          "focusedSpeed": {
+            "value": 9
+          },
+          "Cost": {
+            "value": 17
+          }
+        },
+        "keywords": {
+          "Faction": [
+            "Masters of the Universe"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        },
+        "assets": {
+          "traits": [
+            "Skill§To the Sky!",
+            "Skill§Leader of Avion"
+          ]
+        },
+        "allowed": {
+          "items": [
+            "Iconic§Flamethrower"
+          ]
+        }
+      },
+      "Character§Teela": {
+        "stats": {
+          "Cost": {
+            "value": 18
+          },
+          "Health": {
+            "value": 5
+          },
+          "Toughness": {
+            "value": 2
+          },
+          "Mind": {
+            "value": 3
+          },
+          "Power": {
+            "value": 4
+          },
+          "Perception": {
+            "value": 3
+          },
+          "Strength": {
+            "value": 4
+          },
+          "normalSpeed": {
+            "value": 5
+          },
+          "focusedSpeed": {
+            "value": 8
+          },
+          "Armour": {
+            "max": 1
+          },
+          "Melee": {},
+          "Spell": {
+            "max": 1
+          },
+          "Trinket": {
+            "max": 2
+          }
+        },
+        "assets": {
+          "traits": [
+            "Skill§Acrobatic",
+            "Skill§Warrior Goddess"
+          ]
+        },
+        "keywords": {
+          "Release": [
+            "Wave 1"
+          ],
+          "Faction": [
+            "Masters of the Universe"
+          ]
+        },
+        "allowed": {
+          "items": [
+            "Iconic§Teela’s Sword"
+          ]
+        }
+      },
+      "Character§Trap Jaw": {
+        "stats": {
+          "Health": {
+            "value": 4
+          },
+          "Toughness": {
+            "value": 2
+          },
+          "Mind": {
+            "value": 3
+          },
+          "Power": {
+            "value": 2
+          },
+          "Perception": {
+            "value": 5
+          },
+          "Strength": {
+            "value": 3
+          },
+          "normalSpeed": {
+            "value": 5
+          },
+          "focusedSpeed": {
+            "value": 5
+          },
+          "Ranged": {
+            "max": 1
+          },
+          "Armour": {
+            "max": 1
+          },
+          "Trinket": {
+            "max": 3
+          },
+          "Cost": {
+            "value": 16
+          },
+          "Attachment": {
+            "statType": "rank",
+            "value": "Hook",
+            "ranks": {
+              "Hook": {
+                "order": 0,
+                "traits": [
+                  {
+                    "trait": "Skill§Grappling Hook"
+                  },
+                  {
+                    "trait": "Iconic§Hook Attachment"
+                  }
+                ]
+              },
+              "Laser": {
+                "order": 1,
+                "traits": [
+                  {
+                    "trait": "Iconic§Laser Attachment"
+                  }
+                ]
+              }
+            },
+            "visibility": "normal",
+            "dynamic": true
+          }
+        },
+        "keywords": {
+          "Faction": [
+            "Evil Warriors"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        },
+        "assets": {
+          "traits": [
+            "Skill§Weapon Swap"
+          ]
+        }
+      },
+      "Character§Tri-Klops": {
+        "stats": {
+          "Health": {
+            "value": 5
+          },
+          "Toughness": {
+            "value": 4
+          },
+          "Mind": {
+            "value": 2
+          },
+          "Power": {
+            "value": 2
+          },
+          "Perception": {
+            "value": 3
+          },
+          "Strength": {
+            "value": 5
+          },
+          "normalSpeed": {
+            "value": 4
+          },
+          "focusedSpeed": {
+            "value": 6
+          },
+          "Melee": {
+            "max": 1
+          },
+          "Ranged": {
+            "max": 1
+          },
+          "Armour": {
+            "max": 1
+          },
+          "Shield": {
+            "max": 1
+          },
+          "Trinket": {
+            "max": 2
+          },
+          "Cost": {
+            "value": 17
+          }
+        },
+        "keywords": {
+          "Faction": [
+            "Evil Warriors"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        },
+        "assets": {
+          "traits": [
+            "Skill§Gammavision",
+            "Skill§Optic Blast!"
+          ]
+        },
+        "allowed": {
+          "items": [
+            "Iconic§Longsword"
+          ]
+        }
+      },
+      "Character§Whiplash": {
+        "stats": {
+          "Cost": {
+            "value": 19
+          },
+          "Health": {
+            "value": 6
+          },
+          "Toughness": {
+            "value": 4
+          },
+          "Mind": {
+            "value": 1
+          },
+          "Power": {
+            "value": 2
+          },
+          "Perception": {
+            "value": 3
+          },
+          "Strength": {
+            "value": 5
+          },
+          "normalSpeed": {
+            "value": 5
+          },
+          "focusedSpeed": {
+            "value": 5
+          },
+          "Melee": {
+            "max": 1
+          },
+          "Armour": {
+            "max": 1
+          },
+          "Shield": {
+            "max": 1
+          },
+          "Trinket": {
+            "max": 2
+          }
+        },
+        "assets": {
+          "traits": [
+            "Skill§Cold-Blooded",
+            "Skill§Tail Thrashing"
+          ]
+        },
+        "keywords": {
+          "Release": [
+            "Wave 3"
+          ],
+          "Faction": [
+            "Evil Warriors"
+          ]
+        },
+        "allowed": {
+          "items": [
+            "Iconic§Electro Shocker Spear"
+          ]
+        }
+      },
+      "Fate§F001": {
+        "stats": {
+          "AP": {
+            "value": 2
+          }
+        },
+        "text": "Gain <i class=\"game-icon game-icon-potion-ball\" style=\"color:#78c\"></i> for each <i class=\"game-icon game-icon-broken-heart\" style=\"color:#c24\"></i> on this character (to maximum of 4).\n\n---\n\nOR  \n## +1 <i class=\"game-icon game-icon-potion-ball\"></i>"
+      },
+      "Fate§F002": {},
+      "Fate§F003": {},
+      "Fate§F004": {},
+      "Fate§F005": {},
+      "Fate§F006": {},
+      "Fate§F007": {},
+      "Fate§F008": {},
+      "Fate§F009": {},
+      "Fate§F010": {},
+      "Fate§F011": {},
+      "Fate§F012": {},
+      "Fate§F013": {},
+      "Fate§F014": {},
+      "Fate§F015": {},
+      "Fate§F016": {},
+      "Fate§F017": {},
+      "Fate§F018": {},
+      "Fate§F019": {},
+      "Fate§F020": {},
+      "Fate§F021": {},
+      "Fate§F022": {},
+      "Fate§F023": {},
+      "Fate§F024": {},
+      "Fate§F025": {},
+      "Fate§F026": {},
+      "Fate§F027": {},
+      "Fate§F028": {},
+      "Fate§F029": {},
+      "Fate§F030": {},
+      "Fate§F031": {},
+      "Fate§F032": {},
+      "Fate§F033": {},
+      "Fate§F034": {},
+      "Fate§F035": {},
+      "Fate§F036": {},
+      "Fate§F037": {},
+      "Fate§F038": {},
+      "Fate§F039": {},
+      "Fate§F040": {},
+      "Fate§F041": {},
+      "Fate§F042": {},
+      "Fate§F043": {},
+      "Fate§F044": {},
+      "Fate§F045": {},
+      "Fate§F046": {},
+      "Fate§F047": {},
+      "Fate§F048": {},
+      "Fate§F049": {},
+      "Fate§F050": {},
+      "Fate§F051": {},
+      "Fate§F052": {},
+      "Fate§F053": {},
+      "Fate§F054": {},
+      "Fate§F055": {},
+      "Fate§F056": {},
+      "Fate§F057": {},
+      "Fate§F058": {},
+      "Fate§F059": {},
+      "Fate§F060": {},
+      "Glory§G01": {
+        "stats": {
+          "AP": {
+            "value": 1
+          },
+          "Mana": {
+            "value": 2
+          }
+        },
+        "text": "Knock out an enemy before an enemy knocks out one of your characters.\n\n---\n\n## 20 <i class=\"game-icon game-icon-laurels\" style=\"color:#dd6\"></i>  \nOR  \n## +1 <i class=\"game-icon game-icon-growth\"></i>"
+      },
+      "Glory§G02": {},
+      "Glory§G03": {},
+      "Glory§G04": {},
+      "Glory§G05": {},
+      "Glory§G06": {},
+      "Glory§G07": {},
+      "Glory§G08": {},
+      "Glory§G09": {},
+      "Glory§G10": {},
+      "Glory§G11": {},
+      "Glory§G12": {},
+      "Glory§G13": {},
+      "Iconic§Arm Cannon": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Ranged"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Iconic§Axe": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Iconic§Beast Man’s Whip": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 1"
+          ]
+        }
+      },
+      "Iconic§Cosmic Storm": {
+        "stats": {
+          "Cost": {
+            "value": 1
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Spell"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Iconic§Electro Shocker Spear": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 3"
+          ]
+        }
+      },
+      "Iconic§Flamethrower": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Ranged"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Iconic§Havoc Staff": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Iconic§Hook Attachment": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        },
+        "rules": {
+          "noTally": {
+            "failState": "pass",
+            "evaluate": "AND",
+            "actions": [
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "tally",
+                    "Melee"
+                  ]
+                ],
+                "actionType": "set",
+                "value": 0,
+                "iterations": 1
+              }
+            ]
+          }
+        },
+        "text": "1  <i class=\"game-icon game-icon-round-star\"></i>: 1 <i class=\"game-icon game-icon-broken-heart\" style=\"color:#c24\"></i>  \n3  <i class=\"game-icon game-icon-round-star\"></i>: 2 <i class=\"game-icon game-icon-broken-heart\" style=\"color:#c24\"></i>"
+      },
+      "Iconic§Laser Attachment": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          },
+          "Modifier": {
+            "value": -1
+          },
+          "Range": {
+            "value": 12
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Ranged"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        },
+        "rules": {
+          "noTally": {
+            "failState": "pass",
+            "evaluate": "AND",
+            "actions": [
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "tally",
+                    "Ranged"
+                  ]
+                ],
+                "actionType": "set",
+                "value": 0,
+                "iterations": 1
+              }
+            ]
+          }
+        },
+        "text": "Before attacking, Trap Jaw may spend either 1 extra <i class=\"game-icon game-icon-growth\"></i> to gain one of the bonuses below or 2 extra <i class=\"game-icon game-icon-growth\"></i> to gain both bonuses:  \n+2 <i class=\"game-icon game-icon-perspective-dice-six-faces-five\"></i>  or increase <i class=\"game-icon game-icon-impact-point\"></i> by 4″.\n\n---\n\n1  <i class=\"game-icon game-icon-round-star\"></i>: 1 <i class=\"game-icon game-icon-broken-heart\" style=\"color:#c24\"></i>  \n3  <i class=\"game-icon game-icon-round-star\"></i>: 2 <i class=\"game-icon game-icon-broken-heart\" style=\"color:#c24\"></i>  \n5  <i class=\"game-icon game-icon-round-star\"></i>: 3 <i class=\"game-icon game-icon-broken-heart\" style=\"color:#c24\"></i>"
+      },
+      "Iconic§Laser Gun (Human)": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Ranged"
+          ],
+          "Release": [
+            "Wave 3"
+          ]
+        }
+      },
+      "Iconic§Laser Gun (Monster)": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Ranged"
+          ],
+          "Release": [
+            "Wave 3"
+          ]
+        }
+      },
+      "Iconic§Laser Gun (Robot)": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Ranged"
+          ],
+          "Release": [
+            "Wave 3"
+          ]
+        }
+      },
+      "Iconic§Longsword": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Iconic§Scythe of Doom": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 1"
+          ]
+        }
+      },
+      "Iconic§Shadow Strike": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Spell"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Iconic§Short Axe": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 3"
+          ]
+        }
+      },
+      "Iconic§Staff of Power": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 1"
+          ]
+        }
+      },
+      "Iconic§Stink Gun": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Ranged"
+          ],
+          "Release": [
+            "Wave 3"
+          ]
+        }
+      },
+      "Iconic§Sword of Power": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Iconic§Teela’s Sword": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 1"
+          ]
+        }
+      },
+      "Iconic§Trident": {
+        "stats": {
+          "Cost": {
+            "value": 4
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§Ambrosia": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§Amulet of Avarice": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§Assassin’s Belt": {
+        "keywords": {
+          "Release": [
+            "Wave 3"
+          ],
+          "Type": [
+            "Trinket"
+          ]
+        },
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        }
+      },
+      "Item§Bat": {
+        "keywords": {
+          "Release": [
+            "Wave 4"
+          ]
+        },
+        "stats": {
+          "Cost": {
+            "value": 1
+          }
+        }
+      },
+      "Item§Battle Armor I": {
+        "stats": {
+          "Cost": {
+            "value": 4
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Armour"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§Battle Harness": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          },
+          "Toughness": {
+            "statType": "numeric",
+            "value": 1,
+            "visibility": "hidden",
+            "tracked": true
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Armour"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§Belt": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 1"
+          ]
+        }
+      },
+      "Item§Bomb Pack": {
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 3"
+          ]
+        },
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        }
+      },
+      "Item§Book of Living Spells": {
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 3"
+          ]
+        }
+      },
+      "Item§Cat Mask": {
+        "keywords": {
+          "Release": [
+            "Wave 4"
+          ]
+        },
+        "stats": {
+          "Cost": {
+            "value": 1
+          }
+        }
+      },
+      "Item§Cat Shield": {
+        "keywords": {
+          "Release": [
+            "Wave 4"
+          ]
+        },
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        }
+      },
+      "Item§Cloak of Doom": {
+        "keywords": {
+          "Release": [
+            "Wave 1"
+          ],
+          "Type": [
+            "Armour"
+          ]
+        },
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        }
+      },
+      "Item§Coridite": {
+        "stats": {
+          "Cost": {
+            "value": 1
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 1"
+          ]
+        }
+      },
+      "Item§Eldritch Book of Spells": {
+        "keywords": {
+          "Release": [
+            "Wave 4"
+          ]
+        },
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        }
+      },
+      "Item§Flaming Shield": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Shield"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§Force Field Rod": {
+        "keywords": {
+          "Release": [
+            "Wave 1"
+          ],
+          "Type": [
+            "Trinket"
+          ]
+        },
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        }
+      },
+      "Item§Gar Tech Vest": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          },
+          "Mind": {
+            "statType": "numeric",
+            "value": 1,
+            "visibility": "hidden",
+            "tracked": true
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Armour"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§Gas Tank": {
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 3"
+          ]
+        },
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        }
+      },
+      "Item§Gem of Magoo": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§Gem of Tamadge": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§Golden Disk of Knowledge": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§Grayskull Reliquary": {
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 3"
+          ]
+        }
+      },
+      "Item§Grayskull Ring": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§Harp": {
+        "stats": {
+          "Cost": {
+            "value": 1
+          }
+        },
+        "keywords": {
+          "Release": [
+            "Wave 4"
+          ]
+        }
+      },
+      "Item§Helm": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Armour"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§Horde Armband": {
+        "stats": {
+          "Cost": {
+            "value": 1
+          }
+        },
+        "keywords": {
+          "Release": [
+            "Wave 4"
+          ]
+        }
+      },
+      "Item§Horn of Evil": {
+        "stats": {
+          "Cost": {
+            "value": 1
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§Jet Pack": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§King’s Goblet": {
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 3"
+          ]
+        },
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        }
+      },
+      "Item§Leather Jerkin": {
+        "keywords": {
+          "Type": [
+            "Armour"
+          ],
+          "Release": [
+            "Wave 3"
+          ]
+        },
+        "stats": {
+          "Cost": {
+            "value": 1
+          }
+        }
+      },
+      "Item§Magic Boots": {
+        "stats": {
+          "Cost": {
+            "value": 1
+          }
+        },
+        "keywords": {
+          "Release": [
+            "Wave 4"
+          ]
+        }
+      },
+      "Item§Magic Cloak": {
+        "stats": {
+          "Cost": {
+            "value": 0
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Armour"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§Magic Feather": {
+        "stats": {
+          "Cost": {
+            "value": 1
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§Magic Potion": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§Orb of Power": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§Plate Armour": {
+        "stats": {
+          "Cost": {
+            "value": 1
+          }
+        },
+        "keywords": {
+          "Release": [
+            "Wave 4"
+          ]
+        }
+      },
+      "Item§Polarizer": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§Ram Stone": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§Shield of Ka": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Shield"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§Shin-guards": {
+        "stats": {
+          "Cost": {
+            "value": 1
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 1"
+          ]
+        }
+      },
+      "Item§Spellstone": {
+        "stats": {
+          "Cost": {
+            "value": 1
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§Steel Shield": {
+        "keywords": {
+          "Release": [
+            "Wave 1"
+          ],
+          "Type": [
+            "Shield"
+          ]
+        },
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        }
+      },
+      "Item§Sun Scarab": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§Teleporter": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 1"
+          ]
+        }
+      },
+      "Item§Tiara": {
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 1"
+          ]
+        }
+      },
+      "Item§Visor": {
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 3"
+          ]
+        },
+        "stats": {
+          "Cost": {
+            "value": 1
+          }
+        }
+      },
+      "Item§Weapon Holster": {
+        "stats": {
+          "Cost": {
+            "value": 0
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Armour"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Item§Wheel of Infinity": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Trinket"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Roster§Force": {
+        "allowed": {
+          "classifications": [
+            "Character",
+            "Fate",
+            "Glory"
+          ]
+        },
+        "aspects": {
+          "Group Includes": true
+        },
+        "stats": {
+          "Cost": {
+            "statType": "numeric",
+            "label": "Points",
+            "value": 0,
+            "visibility": "normal",
+            "tracked": true
+          }
+        },
+        "rules": {
+          "setFaction": {
+            "failState": "warning",
+            "evaluate": "AND",
+            "actions": [
+              {
+                "paths": [
+                  [
+                    "{self}",
+                    "constraints",
+                    "any"
+                  ]
+                ],
+                "actionType": "add",
+                "value": [
+                  "{self}",
+                  "included",
+                  "classification",
+                  "Character",
+                  "keywords",
+                  "Faction"
+                ],
+                "iterations": 1
+              }
+            ]
+          }
+        }
+      },
+      "Skill§Acrobatic": {
+        "text": "Once per her interruption Teela can perform a free 2 hex move action. This action can be made in any direction and cannot be interrupted."
+      },
+      "Skill§Always Vigilant": {
+        "text": "At the end of the activation, if there are no enemies within 8″, gain a <i class=\"game-icon game-icon-spears\" style=\"color: #e94\"></i>."
+      },
+      "Skill§Cold-Blooded": {
+        "text": "Whiplash cannot perform a focus action. Each time an ally receives at least 1 <i class=\"game-icon game-icon-broken-heart\" style=\"color:#c24\"></i>, Whiplash gains a <i class=\"game-icon game-icon-convergence-target\" style=\"color: #a8c\"></i>."
+      },
+      "Skill§Dark Presence": {
+        "text": "Test <i class=\"game-icon game-icon-spiky-explosion\"></i> against the <i class=\"game-icon game-icon-hood\"></i> of an enemy within 16″.  \n1 <i class=\"game-icon game-icon-round-star\"></i>: <i class=\"game-icon game-icon-bleeding-eye\" style=\"color: #393\"></i>."
+      },
+      "Skill§Evil Master of Odors": {
+        "text": "At the end of activation, remove all <i class=\"game-icon game-icon-potion-ball\" style=\"color: #78c\"></i> and test <i class=\"game-icon game-icon-strong\"></i> against <i class=\"game-icon game-icon-hood\"></i> of all other characters within 1 (+ 1 per <i class=\"game-icon game-icon-potion-ball\" style=\"color: #78c\"></i> removed) hexes.  \n1 <i class=\"game-icon game-icon-round-star\"></i>: <i class=\"game-icon game-icon-bleeding-eye\" style=\"color: #393\"></i> or <i class=\"game-icon game-icon-knockout\" style=\"color:#393\"></i> or <i class=\"game-icon game-icon-foot-trip\" style=\"color:#393\"></i>."
+      },
+      "Skill§Eye of the Bee": {
+        "text": "All tests with a <i class=\"game-icon game-icon-convergence-target\" style=\"color: #a8c\"></i>, gain +1 <i class=\"game-icon game-icon-perspective-dice-six-faces-five\"></i>."
+      },
+      "Skill§Face of the Monster": {
+        "text": "Gain <i class=\"game-icon game-icon-lizardman\" style=\"color:#dd5\"></i>. <i class=\"game-icon game-icon-lizardman\" style=\"color:#dd5\"></i> provides Man-E-Faces with +2 <i class=\"game-icon game-icon-strong\"></i> and -1 <i class=\"game-icon game-icon-hood\"></i>. Test <i class=\"game-icon game-icon-strong\"></i> against the <i class=\"game-icon game-icon-heavy-helm\"></i> of an enemy engaged with Man-E-Faces.  \n1 <i class=\"game-icon game-icon-round-star\"></i>: 1 <i class=\"game-icon game-icon-broken-heart\" style=\"color:#c24\"></i>.",
+        "stats": {
+          "AP": {
+            "value": 1
+          },
+          "Mana": {
+            "value": 1
+          }
+        }
+      },
+      "Skill§Face of the Robot": {
+        "text": "Gain <i class=\"game-icon game-icon-cyborg-face\" style=\"color:#dd5\"></i> and a <i class=\"game-icon game-icon-convergence-target\" style=\"color: #a8c\"></i>. <i class=\"game-icon game-icon-cyborg-face\" style=\"color:#dd5\"></i> provides Man-E-Faces with +2 <i class=\"game-icon game-icon-crystal-eye\"></i> and -1 <i class=\"game-icon game-icon-heavy-helm\"></i>.",
+        "stats": {
+          "AP": {
+            "value": 1
+          },
+          "Mana": {
+            "value": 1
+          }
+        }
+      },
+      "Skill§Fearsome Presence": {
+        "text": "If any character ends their activation or interruption within 2 hexes from Scareglow, test <i class=\"game-icon game-icon-spiky-explosion\"></i> against <i class=\"game-icon game-icon-hood\"></i> of that character.  \n1 <i class=\"game-icon game-icon-round-star\"></i>: <i class=\"game-icon game-icon-tear-tracks\" style=\"color:#393\"></i>."
+      },
+      "Skill§Freezing Ray": {
+        "text": "Test <i class=\"game-icon game-icon-spiky-explosion\"></i>. +1 against the <i class=\"game-icon game-icon-hood\"></i> of an enemy within 12″.  \n1: <i class=\"game-icon game-icon-round-star\"></i>: <i class=\"game-icon game-icon-foot-trip\" style=\"color:#393\"></i>"
+      },
+      "Skill§Gammavision": {
+        "stats": {
+          "Mana": {
+            "value": 2
+          }
+        },
+        "text": "Test <i class=\"game-icon game-icon-spiky-explosion\"></i> + 2 against the <i class=\"game-icon game-icon-hood\"></i> of an enemy within 12″.  \n1 <i class=\"game-icon game-icon-round-star\"></i>: <i class=\"game-icon game-icon-jawless-cyclop\" style=\"color:#393\"></i>, all attacks against a character with a <i class=\"game-icon game-icon-jawless-cyclop\" style=\"color:#393\"></i> gain a <i class=\"game-icon game-icon-convergence-target\" style=\"color: #a8c\"></i>."
+      },
+      "Skill§Grappling Hook": {
+        "text": "If Trap Jaw has the ‘Hook Attachment’ equipped, test <i class=\"game-icon game-icon-crystal-eye\"></i> -1.  \nTrap Jaw can jump in a straight line up to 2 hexes per <i class=\"game-icon game-icon-round-star\"></i>.",
+        "stats": {
+          "Mana": {
+            "value": 2
+          }
+        }
+      },
+      "Skill§Hero in the Sky": {
+        "text": "Each time an ally gets a <i class=\"game-icon game-icon-convergence-target\" style=\"color: #a8c\"></i>, Buzz-Off can immediately jump 1 hex. This movement cannot be interrupted."
+      },
+      "Skill§Human Battering Ram": {
+        "text": "If Ram Man ends his activation engaged, he gains a <i class=\"game-icon game-icon-convergence-target\" style=\"color: #a8c\"></i>."
+      },
+      "Skill§I Have the Power!": {
+        "text": "During any test, He-Man may reroll 1 extra <i class=\"game-icon game-icon-perspective-dice-six-faces-five\"></i> for each <i class=\"game-icon game-icon-potion-ball\" style=\"color: #78c\"></i> spent on rerolls."
+      },
+      "Skill§Instant Puddle": {
+        "text": "Test <i class=\"game-icon game-icon-spiky-explosion\"></i>.  \n1: <i class=\"game-icon game-icon-round-star\"></i>: Place a <i class=\"game-icon game-icon-triton-head\" style=\"color:#f60\"></i> within 8″. The area within 2 hexes from a <i class=\"game-icon game-icon-triton-head\" style=\"color:#f60\"></i> is treated as difficult terrain."
+      },
+      "Skill§Leader of Avion": {
+        "stats": {
+          "AP": {
+            "value": 1
+          },
+          "Mana": {
+            "value": 1
+          }
+        },
+        "text": "Test <i class=\"game-icon game-icon-spiky-explosion\"></i>.   \n1 <i class=\"game-icon game-icon-round-star\"></i>: Choose any activated ally (line of sight not required). This ally gains a <i class=\"game-icon game-icon-convergence-target\" style=\"color: #a8c\"></i>. or an <i class=\"game-icon game-icon-spears\" style=\"color: #e94\"></i>. This ability cannot be used during an interruption."
+      },
+      "Skill§Lord of Destruction": {
+        "stats": {
+          "Mana": {
+            "value": 1
+          }
+        },
+        "text": "Until the end of the current activation or interruption, Skeletor can use <i class=\"game-icon game-icon-fairy-wand\"></i> while engaged."
+      },
+      "Skill§Magic Hat": {
+        "text": "Orko starts the game with 3 <i class=\"game-icon game-icon-potion-ball\" style=\"color: #78c\"></i>.  \nBefore Orko or an ally within 8″ makes a defence test, Orko may spend up to 3 <i class=\"game-icon game-icon-potion-ball\" style=\"color: #78c\"></i> and add to this test 1 extra <i class=\"game-icon game-icon-perspective-dice-six-faces-five\"></i> per <i class=\"game-icon game-icon-potion-ball\" style=\"color: #78c\"></i> spent."
+      },
+      "Skill§Master Tactician": {
+        "text": "Test <i class=\"game-icon game-icon-spiky-explosion\"></i> +1.  \n1 <i class=\"game-icon game-icon-round-star\"></i>: The next ally activated this round gains 2 <i class=\"game-icon game-icon-potion-ball\" style=\"color: #78c\"></i>.  \nThis ability cannot be used during an interruption.",
+        "stats": {
+          "AP": {
+            "value": 1
+          },
+          "Mana": {
+            "value": 1
+          }
+        }
+      },
+      "Skill§Nightmare": {
+        "stats": {
+          "Mana": {
+            "value": 1
+          }
+        },
+        "text": "Test <i class=\"game-icon game-icon-spiky-explosion\"></i> +1 against the <i class=\"game-icon game-icon-hood\"></i> of an ally within 16″:  \n1 <i class=\"game-icon game-icon-round-star\"></i>: <i class=\"game-icon game-icon-tear-tracks\" style=\"color:#393\"></i>, Scareglow performs a free move action."
+      },
+      "Skill§Optic Blast!": {
+        "text": "If an enemy within 8″ receives a <i class=\"game-icon game-icon-skull-crossed-bones\" style=\"color:#393\"></i>, Tri-Klops can spend 1 to 3 <i class=\"game-icon game-icon-potion-ball\" style=\"color:#78c\"></i> and test <i class=\"game-icon game-icon-spiky-explosion\"></i> (+1 <i class=\"game-icon game-icon-perspective-dice-six-faces-five\"></i> per <i class=\"game-icon game-icon-potion-ball\" style=\"color:#78c\"></i> spent) against the <i class=\"game-icon game-icon-hood\"></i> of this enemy.  \n1 <i class=\"game-icon game-icon-round-star\"></i>: 1 <i class=\"game-icon game-icon-broken-heart\" style=\"color:#c24\"></i>."
+      },
+      "Skill§Primal Rage": {
+        "text": "Upon activation:  \nIf Beast Man has at least 1 <i class=\"game-icon game-icon-broken-heart\" style=\"color:#c24\"></i>: gain 1 <i class=\"game-icon game-icon-potion-ball\" style=\"color:#78c\"></i>.  \nAdditionally, if Beast Man has at least 3 <i class=\"game-icon game-icon-broken-heart\" style=\"color:#c24\"></i>, gain 1 <i class=\"game-icon game-icon-growth\"></i>."
+      },
+      "Skill§Ramming Speed": {
+        "stats": {
+          "AP": {
+            "value": 1
+          },
+          "Mana": {
+            "value": 2
+          }
+        },
+        "text": "Ram Man makes a free move action with his <i class=\"game-icon game-icon-wingfoot\"></i> value +2 (to a maximum of 6). Test <i class=\"game-icon game-icon-strong\"></i> against <i class=\"game-icon game-icon-heavy-helm\"></i> of each enemy within 2 hexes.  \n1 <i class=\"game-icon game-icon-round-star\"></i>: <i class=\"game-icon game-icon-knockout\" style=\"color:#393\"></i>."
+      },
+      "Skill§Shared Power": {
+        "text": "Any ally within 8″ can use Evil-Lyn’s <i class=\"game-icon game-icon-potion-ball\" style=\"color: #78c\"></i> as their own."
+      },
+      "Skill§Stinking Delight": {
+        "text": "Whenever any character gains a <i class=\"game-icon game-icon-skull-crossed-bones\" style=\"color:#393\"></i>, Stinkor gains 1 <i class=\"game-icon game-icon-potion-ball\" style=\"color: #78c\"></i>."
+      },
+      "Skill§Summon": {
+        "text": "Test <i class=\"game-icon game-icon-spiky-explosion\"></i> -2.  \n1 <i class=\"game-icon game-icon-round-star\"></i>: Choose any ally within 12″ and teleport the ally to a hex adjacent to Skeletor.",
+        "stats": {
+          "AP": {
+            "value": 1
+          },
+          "Mana": {
+            "value": 2
+          }
+        }
+      },
+      "Skill§Superhuman Reflex": {
+        "text": "He-Man cannot receive <i class=\"game-icon game-icon-potion-ball\" style=\"color: #78c\"></i> from fate and glory cards. If he gains a <i class=\"game-icon game-icon-convergence-target\" style=\"color: #a8c\"></i>, he also gains 1 <i class=\"game-icon game-icon-potion-ball\" style=\"color: #78c\"></i>."
+      },
+      "Skill§Supernatural Endurance": {
+        "text": "When receiving at least 2 <i class=\"game-icon game-icon-broken-heart\" style=\"color:#c24\"></i>, Beast Man may spend 1 <i class=\"game-icon game-icon-potion-ball\" style=\"color:#78c\"></i> to reduce the number of <i class=\"game-icon game-icon-broken-heart\" style=\"color:#c24\"></i> received by 1."
+      },
+      "Skill§Tail Thrashing": {
+        "stats": {
+          "Mana": {
+            "value": 2
+          }
+        },
+        "text": "Choose a character on an adjacent hex and test <i class=\"game-icon game-icon-strong\"></i>. Target is pushed up to 1 hex per <i class=\"game-icon game-icon-round-star\"></i>."
+      },
+      "Skill§Telepatic Guide": {
+        "text": "This ability can only be used during an interruption. Choose an ally within 12″ and test <i class=\"game-icon game-icon-spiky-explosion\"></i>. -1.  \n2 <i class=\"game-icon game-icon-round-star\"></i>: The ally interrupts the same enemy."
+      },
+      "Skill§To the Sky!": {
+        "text": "If Stratos isn’t engaged, spend up to 5 <i class=\"game-icon game-icon-potion-ball\" style=\"color: #78c\"></i> to jump 1 hex for every <i class=\"game-icon game-icon-potion-ball\" style=\"color: #78c\"></i> spent.",
+        "stats": {
+          "Mana": {
+            "statType": "term",
+            "value": "X"
+          }
+        }
+      },
+      "Skill§Traveller from Trolla": {
+        "text": "After spending <i class=\"game-icon game-icon-potion-ball\" style=\"color: #78c\"></i> and <i class=\"game-icon game-icon-growth\"></i> while engaged for <i class=\"game-icon game-icon-fairy-wand\"></i> while engaged, but before making an attack test, Orko has to make a <i class=\"game-icon game-icon-hood\"></i> +1 test. If he does not roll at least 2 <i class=\"game-icon game-icon-round-star\"></i>, the spell has no effect."
+      },
+      "Skill§Vision of the Future": {
+        "stats": {
+          "Mana": {
+            "value": 1
+          }
+        },
+        "text": "Test <i class=\"game-icon game-icon-spiky-explosion\"></i>.  \nFor every <i class=\"game-icon game-icon-round-star\"></i>, look at the top Fate card, then place them back on the top of a fate deck in any order."
+      },
+      "Skill§Warrior Goddess": {
+        "text": "Allies within 8″ can reroll up to 2 <i class=\"game-icon game-icon-perspective-dice-six-faces-five\"></i> during their skill tests."
+      },
+      "Skill§Weapon Swap": {
+        "stats": {
+          "Mana": {
+            "value": 1
+          }
+        },
+        "text": "If Trap Jaw has the ‘Hook Attachment’ equipped, replace it with the ‘Laser Attachment’.  \nIf Trap Jaw has the ‘Laser Attachment’ equipped, replace it with the ‘Hook Attachment’."
+      },
+      "Weapon§Battle Axe": {
+        "stats": {
+          "Cost": {
+            "value": 5
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Weapon§Bionatops Blaster": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Ranged"
+          ],
+          "Release": [
+            "Wave 1"
+          ]
+        }
+      },
+      "Weapon§Blaster": {
+        "stats": {
+          "Cost": {
+            "value": 4
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Ranged"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Weapon§Calamity": {
+        "stats": {
+          "Cost": {
+            "value": 4
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Spell"
+          ],
+          "Release": [
+            "Wave 4"
+          ]
+        }
+      },
+      "Weapon§Catra’s Whip": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 4"
+          ]
+        }
+      },
+      "Weapon§Club": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 3"
+          ]
+        }
+      },
+      "Weapon§Cosmic Blaster": {
+        "stats": {
+          "Cost": {
+            "value": 1
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Ranged"
+          ],
+          "Release": [
+            "Wave 4"
+          ]
+        }
+      },
+      "Weapon§Cursed Minions": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Spell"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Weapon§Dagger": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Weapon§Dragon Blaster": {
+        "stats": {
+          "Cost": {
+            "value": 4
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Ranged"
+          ],
+          "Release": [
+            "Wave 3"
+          ]
+        }
+      },
+      "Weapon§Dragon Staff": {
+        "stats": {
+          "Cost": {
+            "value": 1
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 4"
+          ]
+        }
+      },
+      "Weapon§Electronic Sword of Power": {
+        "stats": {
+          "Cost": {
+            "value": 4
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Weapon§Energy Cannon": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Ranged"
+          ],
+          "Release": [
+            "Wave 4"
+          ]
+        }
+      },
+      "Weapon§Eternal Binds": {
+        "stats": {
+          "Cost": {
+            "value": 1
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Spell"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Weapon§Fatal Flaw": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Spell"
+          ],
+          "Release": [
+            "Wave 1"
+          ]
+        }
+      },
+      "Weapon§Fear Gas Cannon": {
+        "stats": {
+          "Cost": {
+            "value": 4
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Ranged"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Weapon§Fireball": {
+        "stats": {
+          "Cost": {
+            "value": 4
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Spell"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Weapon§Flaming Missile": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Spell"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Weapon§Flying Fists": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Weapon§Horde Axe": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 4"
+          ]
+        }
+      },
+      "Weapon§Horde Crossbow": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Ranged"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Weapon§Horde Staff": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 4"
+          ]
+        }
+      },
+      "Weapon§Illusionary Attack": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Spell"
+          ],
+          "Release": [
+            "Wave 1"
+          ]
+        }
+      },
+      "Weapon§Laser Pistol": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Ranged"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Weapon§Laser Rifle": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Ranged"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Weapon§Long Axe": {
+        "stats": {
+          "Cost": {
+            "value": 4
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 3"
+          ]
+        }
+      },
+      "Weapon§Mace": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Weapon§Magic Arrow": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Spell"
+          ],
+          "Release": [
+            "Wave 1"
+          ]
+        }
+      },
+      "Weapon§Magic Blast": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Spell"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Weapon§Mana Burn": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Spell"
+          ],
+          "Release": [
+            "Wave 4"
+          ]
+        }
+      },
+      "Weapon§Mega Blaster": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Ranged"
+          ],
+          "Release": [
+            "Wave 1"
+          ]
+        }
+      },
+      "Weapon§Overwhelming Power": {
+        "stats": {
+          "Cost": {
+            "value": 1
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Spell"
+          ],
+          "Release": [
+            "Wave 4"
+          ]
+        }
+      },
+      "Weapon§Photon Neutralizer": {
+        "stats": {
+          "Cost": {
+            "value": 4
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Ranged"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Weapon§Power of Friendship": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Spell"
+          ],
+          "Release": [
+            "Wave 3"
+          ]
+        }
+      },
+      "Weapon§Propeller Arm": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 4"
+          ]
+        }
+      },
+      "Weapon§Purple Sword of Power": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Weapon§Ray of Destruction": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Spell"
+          ],
+          "Release": [
+            "Wave 1"
+          ]
+        }
+      },
+      "Weapon§Rebel Pistol": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Ranged"
+          ],
+          "Release": [
+            "Wave 3"
+          ]
+        }
+      },
+      "Weapon§Skull Weapon": {
+        "stats": {
+          "Cost": {
+            "value": 4
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 1"
+          ]
+        }
+      },
+      "Weapon§Spear": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 1"
+          ]
+        }
+      },
+      "Weapon§Spell of Protection": {
+        "stats": {
+          "Cost": {
+            "value": 1
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Spell"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Weapon§Staff of Avion": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Weapon§Strong Will Fall": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Spell"
+          ],
+          "Release": [
+            "Wave 3"
+          ]
+        }
+      },
+      "Weapon§Swiftness": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Spell"
+          ],
+          "Release": [
+            "Wave 3"
+          ]
+        }
+      },
+      "Weapon§Sword of Rakash": {
+        "stats": {
+          "Cost": {
+            "value": 4
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Weapon§Terror Claws": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Melee"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Weapon§Thunder": {
+        "stats": {
+          "Cost": {
+            "value": 3
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Spell"
+          ],
+          "Release": [
+            "Wave 0"
+          ]
+        }
+      },
+      "Weapon§Tornado": {
+        "stats": {
+          "Cost": {
+            "value": 4
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Spell"
+          ],
+          "Release": [
+            "Wave 3"
+          ]
+        }
+      },
+      "Weapon§Two-Sided Gun": {
+        "stats": {
+          "Cost": {
+            "value": 2
+          }
+        },
+        "keywords": {
+          "Type": [
+            "Ranged"
+          ],
+          "Release": [
+            "Wave 4"
+          ]
+        }
+      }
+    },
+    "gameModes": {},
+    "theme": {}
+  }
+}
