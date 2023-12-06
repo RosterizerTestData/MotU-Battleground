@@ -1,6 +1,6 @@
 # MotU Battleground
 
-https://raw.githubusercontent.com/RosterizerTestData/MotU-Battleground/main/MotU-Battleground.manifest
+https://raw.githubusercontent.com/RosterizerTestData/MotU-Battleground/main/MotU-Battleground.rulebook
 
 ## TBD:
 

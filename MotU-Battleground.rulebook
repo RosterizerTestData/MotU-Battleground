@@ -7,7 +7,7 @@
   "url": "http://motubattleground.com/",
   "notes": "",
   "wip": true,
-  "manifest": {
+  "rulebook": {
     "assetTaxonomy": {
       "Character": {
         "allowed": {
