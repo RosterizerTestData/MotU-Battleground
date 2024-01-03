@@ -1,6 +1,6 @@
 {
   "name": "Masters of the Universe",
-  "revision": "0.1.1",
+  "revision": "0.2.0",
   "game": "MotU Battleground",
   "genre": "fantasy",
   "publisher": "Archon Studios",
@@ -3178,7 +3178,7 @@
           }
         }
       },
-      "Roster§Force": {
+      "Roster§Roster": {
         "allowed": {
           "classifications": [
             "Character",
@@ -3187,7 +3187,8 @@
           ]
         },
         "aspects": {
-          "Group Includes": true
+          "Group Includes": true,
+          "Label": "Force"
         },
         "rules": {
           "setFaction": {
