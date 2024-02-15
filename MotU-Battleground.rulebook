@@ -507,9 +507,7 @@
                     "Unique"
                   ],
                   [
-                    "{self}",
-                    "rules",
-                    "There are multiples of this unique equipment.",
+                    "{this}",
                     "evals",
                     "1",
                     "result",
